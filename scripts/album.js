@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumVonnegut = {
+    title: 'Bluebeard',
+    artist: 'Kurt Vonnegut',
+    label: 'KTrout',
+    year: '1969',
+    albumArtUrl: 'assets/images/album_covers/09.png',
+    songs: [
+        { title: 'Sirens of Titan', duration: '3:01' },
+        { title: 'The Childrens Crusade', duration: '5:22' },
+        { title: 'E.P.I.C.A.C.', duration: '4:21' },
+        { title: 'Breakfast of Champions', duration: '3:59' },
+        { title: 'Player Piano', duration: '2:46' }
+    ]
+};
+
 var createrSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -40,13 +55,13 @@ var createrSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-    
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -61,4 +76,13 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    var albumsCollection = [albumPicasso, albumMarconi, albumVonnegut];
+    var i = 1;
+    albumImage.addEventListener('click', function() {
+        setCurrentAlbum(albumsCollection[i]);
+        i++;
+        if (i === albumsCollection.length) {
+            i = 0;
+        }
+    });
 };
