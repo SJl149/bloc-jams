@@ -28,7 +28,7 @@ var albumMarconi = {
     ]
 };
 
-var createrSongRow = function(songNumber, songName, songLength) {
+var createrSongRow = function (songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
       + '   <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -117,9 +117,8 @@ var currentlyPlayingSong = null;
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
     songListContainer.addEventListener('mouseover', function(event) {
-        console.log(event.target);
         if (event.target.parentElement.className === 'album-view-song-item') {
-            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+           
             var songItem = getSongItem(event.target);
             
             if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
